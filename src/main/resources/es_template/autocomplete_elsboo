@@ -1,0 +1,26 @@
+PUT autocomplete_elsboo
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "autocomplete": {
+          "tokenizer": "edge_ngram"
+        }
+      },
+      "tokenizer": {
+        "edge_ngram": {
+          "type": "edge_ngram",
+          "max_gram": 10
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "keyword": {
+        "type": "text",
+        "analyzer": "autocomplete"
+      }
+    }
+  }
+}
