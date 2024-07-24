@@ -7,11 +7,20 @@ abstract class AutocompleteService(val keywords: List<String>, val searchKeyword
 
     abstract fun index()
 
-    fun performWithDuration() {
+    protected fun indexWithDuration(name: String) {
+        log.info("[$name] Indexing started...")
+        val startTime = System.currentTimeMillis()
+        index()
+        val endTime = System.currentTimeMillis()
+        log.info("[$name] Index finished. Duration: ${endTime - startTime} ms")
+    }
+
+    protected fun performWithDuration(name: String) {
+        log.info("[$name] Perform started...")
         val startTime = System.currentTimeMillis()
         perform()
         val endTime = System.currentTimeMillis()
-        log.info("Duration: ${endTime - startTime} ms")
+        log.info("[$name] Perform finished. Duration: ${endTime - startTime} ms")
     }
 
     abstract fun perform()
